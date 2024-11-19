@@ -37,7 +37,7 @@ namespace ClawbearGames
             ScaleRectTransform(gameNameTrans, Vector2.zero, Vector2.one, 1f);
 
             settingButtonTurn = 1;
-            currentLevelText.text = "Level: " + PlayerPrefs.GetInt(PlayerPrefsKeys.PPK_SAVED_LEVEL, 1).ToString();
+            currentLevelText.text = PlayerPrefs.GetInt(PlayerPrefsKeys.PPK_SAVED_LEVEL, 1).ToString();
 
             //Update sound buttons
             if (ServicesManager.Instance.SoundManager.IsSoundOff())
