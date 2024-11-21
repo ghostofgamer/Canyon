@@ -127,6 +127,11 @@ namespace ClawbearGames
             ServicesManager.Instance.ShareManager.NativeShare();
         }
 
+public void OnOpenWebSite()
+{
+Application.OpenURL("https://www.maxfabrique.com/");
+}
+
         public void OnClickSoundButton()
         {
             ServicesManager.Instance.SoundManager.PlaySound(ServicesManager.Instance.SoundManager.Button);

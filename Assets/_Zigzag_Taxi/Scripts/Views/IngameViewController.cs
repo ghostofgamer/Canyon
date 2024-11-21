@@ -11,6 +11,9 @@ namespace ClawbearGames
         [SerializeField] private Image timeCountSlider = null;
         [SerializeField] private Text timeCountText = null;
         [SerializeField] private Text levelText = null;
+
+        [SerializeField] private CanvasGroup _gamePlayGroupe;
+            
         private bool isTouchingBuildButton = false;
 
 
@@ -33,8 +36,20 @@ namespace ClawbearGames
             MoveRectTransform(lelfPanelTrans, lelfPanelTrans.anchoredPosition, new Vector2(lelfPanelTrans.anchoredPosition.x, -10f), 0.5f);
 
             //Update texts and other fields, parameters
-            levelText.text = "Level: " + IngameManager.Instance.CurrentLevel.ToString();
+            levelText.text = IngameManager.Instance.CurrentLevel.ToString();
             tutorialPanelTrans.gameObject.SetActive(!Utilities.IsShowTutorial());
+
+            if (!Utilities.IsShowTutorial())
+            {
+                ChangeValueVanvasGroupGamePlayObjects(0, false);
+            }
+        }
+
+        private void ChangeValueVanvasGroupGamePlayObjects(float alpha,bool value)
+        {
+            _gamePlayGroupe.alpha = alpha;
+            _gamePlayGroupe.interactable = value;
+            _gamePlayGroupe.blocksRaycasts = value;
         }
 
         public override void OnClose()
@@ -77,6 +92,7 @@ namespace ClawbearGames
             ServicesManager.Instance.SoundManager.PlaySound(ServicesManager.Instance.SoundManager.Button);
             PlayerPrefs.SetInt(PlayerPrefsKeys.PPK_TUTORIAL, 1);
             tutorialPanelTrans.gameObject.SetActive(false);
+            ChangeValueVanvasGroupGamePlayObjects(1, true);
             IngameManager.Instance.PlayingGame();
         }
 
