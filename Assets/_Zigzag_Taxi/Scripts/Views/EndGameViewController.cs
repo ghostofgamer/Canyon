@@ -6,6 +6,10 @@ namespace ClawbearGames
 {
     public class EndGameViewController : BaseViewController
     {
+        public Sprite WinSprite;
+        public Sprite FailSprite;
+        public Image EndGameImage;
+
         [SerializeField] private CanvasGroup mainCanvasGroup = null;
         [SerializeField] private CanvasGroup collectedCoinsCanvasGroup = null;
         [SerializeField] private RectTransform topPanelTrans = null;
@@ -55,19 +59,21 @@ namespace ClawbearGames
 
             if (IngameManager.Instance.IngameState == IngameState.Ingame_CompleteLevel)
             {
-                levelCompletedTextTrans.gameObject.SetActive(true);
-                levelFailedTextTrans.gameObject.SetActive(false);
+                /*levelCompletedTextTrans.gameObject.SetActive(true);
+                levelFailedTextTrans.gameObject.SetActive(false);*/
+                EndGameImage.sprite = WinSprite;
 
-                nextLevelButtonTrans.gameObject.SetActive(true);
-                replayLevelButtonTrans.gameObject.SetActive(false);
+               /* nextLevelButtonTrans.gameObject.SetActive(true);*/
+                /*replayLevelButtonTrans.gameObject.SetActive(false);*/
             }
             else
             {
-                levelFailedTextTrans.gameObject.SetActive(true);
-                levelCompletedTextTrans.gameObject.SetActive(false);
+                /*levelFailedTextTrans.gameObject.SetActive(true);
+                levelCompletedTextTrans.gameObject.SetActive(false);*/
+                EndGameImage.sprite = FailSprite;
+                /*replayLevelButtonTrans.gameObject.SetActive(true);*/
 
-                replayLevelButtonTrans.gameObject.SetActive(true);
-                nextLevelButtonTrans.gameObject.SetActive(false);
+               /* nextLevelButtonTrans.gameObject.SetActive(false);*/
             }
 
 
@@ -109,6 +115,8 @@ namespace ClawbearGames
             ServicesManager.Instance.SoundManager.PlaySound(ServicesManager.Instance.SoundManager.Button);
             ServicesManager.Instance.CoinManager.AddTotalCoins(ServicesManager.Instance.CoinManager.CollectedCoins, 0.25f);
             collectedCoinsCanvasGroup.gameObject.SetActive(false);
+
+            LoadScene("Home", 0.25f);
         }
 
         public void OnClickDoubleCoinButton()
