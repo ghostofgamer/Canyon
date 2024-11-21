@@ -6,6 +6,8 @@ namespace ClawbearGames
 {
     public class HomeViewController : BaseViewController
     {
+        public GameObject warningIcon;
+
         [SerializeField] private RectTransform topPanelTrans = null;
         [SerializeField] private RectTransform bottomPanelTrans = null;
         [SerializeField] private RectTransform leftPanelTrans = null;

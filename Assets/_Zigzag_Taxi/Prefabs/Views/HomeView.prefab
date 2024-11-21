@@ -2002,6 +2002,7 @@ GameObject:
   - component: {fileID: 3997178747696318702}
   - component: {fileID: 2295011360992548702}
   - component: {fileID: 3340676554809504765}
+  - component: {fileID: 2241372269667652952}
   m_Layer: 5
   m_Name: WarningSign
   m_TagString: Untagged
@@ -2023,10 +2024,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 5719238629647862910}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 1}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -30, y: -30}
-  m_SizeDelta: {x: 150, y: 150}
+  m_AnchorMin: {x: 1, y: 0.5}
+  m_AnchorMax: {x: 1, y: 0.5}
+  m_AnchoredPosition: {x: -33.6, y: 10.6}
+  m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3997178747696318702
 CanvasRenderer:
@@ -2049,16 +2050,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 0, a: 1}
-  m_RaycastTarget: 1
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 2d00b948659a74f49afed19bb0b4539d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: eff99c1d6573df140acadf591c2fb2a3, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -2087,6 +2088,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &2241372269667652952
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7710484913859783678}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 929c7375a63a0a246ab09ebe38d5a4b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7873712996040380507
 GameObject:
   m_ObjectHideFlags: 0
@@ -3632,6 +3645,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   viewType: 1
+  warningIcon: {fileID: 0}
   topPanelTrans: {fileID: 7952047085457058689}
   bottomPanelTrans: {fileID: 235060913763033621}
   leftPanelTrans: {fileID: 741223714079621776}

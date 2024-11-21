@@ -7,6 +7,8 @@ namespace ClawbearGames
 {
     public class DailyRewardViewController : BaseViewController
     {
+        // [SerializeField] private GameObject warning;
+        [SerializeField]private Warning warning;
         [SerializeField] private CanvasGroup canvasGroup = null;
         [SerializeField] private RectTransform dailyrewardItemsPanelTrans = null;
         [SerializeField] private RectTransform claimButtonTrans = null;
@@ -18,8 +20,13 @@ namespace ClawbearGames
 
         private List<DailyRewardItemController> listDailyRewardItemController = new List<DailyRewardItemController>();
 
+
+     
+
         private void Update()
         {
+            //warning = FindObjectOfType<Warning>();
+            
             //Get time rewmains till next reward
             double timeRemains = ServicesManager.Instance.DailyRewardManager.TimeRemainsTillNextReward();
 
@@ -27,11 +34,13 @@ namespace ClawbearGames
             if (timeRemains > 0)
             {
                 claimButtonTrans.gameObject.SetActive(false);
+                //warning.gameObject.SetActive(false);
                 nextRewardTimeText.text = Utilities.SecondsToTimeFormat(timeRemains);
             }
             else
             {
                 claimButtonTrans.gameObject.SetActive(true);
+                //warning.gameObject.SetActive(true);
             }
 
             //Update texts
