@@ -9,6 +9,9 @@ namespace ClawbearGames
 {
     public class LeaderboardViewController : BaseViewController
     {
+        public NewLeaderboardManager leaderboardManager;
+
+
         [SerializeField] private CanvasGroup canvasGroup = null;
         [SerializeField] private RectTransform servicesUnavailablePanelTrans = null;
         [SerializeField] private RectTransform setUsernamePanelTrans = null;
@@ -78,9 +81,81 @@ namespace ClawbearGames
         ////////////////////////////////////////////////// Public Functions
         /// </summary>
 
+        public void ShowLeaderBoard()
+        {
+            Debug.Log("SHOW");
+
+            if (PlayerPrefs.HasKey("PlayerName"))
+            {
+                Debug.Log("HASKEY");
+                setUsernamePanelTrans.gameObject.SetActive(false);
+                leaderboardPanelTrans.gameObject.SetActive(true);
+                leaderboardManager.DisplayLeaderboard();
+            }
+            else
+            {
+                Debug.Log("DONT HASKEY");
+                setUsernamePanelTrans.gameObject.SetActive(true);
+                leaderboardPanelTrans.gameObject.SetActive(false);
+            }
+
+        }
+
 
         public override void OnShow()
         {
+            /*     ShowLeaderBoard();
+                 return;*/
+
+            FadeInCanvasGroup(canvasGroup, 0.75f);
+            servicesUnavailablePanelTrans.gameObject.SetActive(false);
+            setUsernamePanelTrans.gameObject.SetActive(false);
+            leaderboardPanelTrans.gameObject.SetActive(false);
+
+
+            if (PlayerPrefs.HasKey("PlayerName"))
+            {
+                setUsernamePanelTrans.gameObject.SetActive(false);
+                leaderboardPanelTrans.gameObject.SetActive(true);
+                leaderboardManager.DisplayLeaderboard();
+
+                /*//User name already been set up.
+                localUsernameText.text = "#. " + PlayerPrefs.GetString(PlayerPrefsKeys.PPK_SAVED_USER_NAME);
+
+                //Check connect to Dreamlo services
+                ServicesManager.Instance.LeaderboardManager.CheckConnectedToDreamloServices((isConnected) =>
+                {
+                    if (isConnected)
+                    {
+                        //Connected to Dreamlo services -> show leaderboard
+                        leaderboardPanelTrans.gameObject.SetActive(true);
+
+                        //Create items and set data for local player.
+                        ServicesManager.Instance.LeaderboardManager.GetPlayerLeaderboardData((playerDatas) =>
+                        {
+                            StartCoroutine(CRCreateLeaderboardItems(playerDatas));
+                        });
+                    }
+                    else
+                    {
+                        //Not connect to Dreamlo services -> show servicesUnavailableView
+                        servicesUnavailablePanelTrans.gameObject.SetActive(true);
+                    }
+                });*/
+            }
+            else
+            {
+                //User name is not set up yet -> set user name.
+                setUsernamePanelTrans.gameObject.SetActive(true);
+                usernameErrorText.gameObject.SetActive(false);
+                localUsernameText.text = string.Empty;
+            }
+
+            return;
+
+
+
+
             FadeInCanvasGroup(canvasGroup, 0.75f);
             servicesUnavailablePanelTrans.gameObject.SetActive(false);
             setUsernamePanelTrans.gameObject.SetActive(false);
@@ -122,6 +197,8 @@ namespace ClawbearGames
 
         public override void OnClose()
         {
+
+            Debug.Log("OnClose");
             foreach (LeaderboardItemController o in listLeaderboardItemController)
             {
                 o.gameObject.SetActive(false);

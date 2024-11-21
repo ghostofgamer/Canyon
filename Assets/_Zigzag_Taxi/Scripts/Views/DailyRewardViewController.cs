@@ -30,6 +30,8 @@ namespace ClawbearGames
             //Get time rewmains till next reward
             double timeRemains = ServicesManager.Instance.DailyRewardManager.TimeRemainsTillNextReward();
 
+            Debug.Log("Время " + timeRemains);
+
             //Update the texts and buttons
             if (timeRemains > 0)
             {

@@ -18,6 +18,11 @@ namespace ClawbearGames
         {
             transform.localScale = Vector3.one;
             usernameText.text = "#" + indexRank.ToString() + "." + " " + data.Username;
+
+            Debug.Log("YFVT " + data.Username);
+            Debug.Log("LVL " + indexRank.ToString());
+
+            usernameText.text = "#ВАДИМКА";
             levelText.text = "Level: " + data.Level.ToString();
 
             if (indexRank == 1)

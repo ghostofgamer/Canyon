@@ -18,8 +18,8 @@ namespace ClawbearGames
 		[SerializeField] private string leaderboardPublicCode = "61e7d9b68f40bb1034601d53";
 
 
-		private string SetLeaderboardDataUrl { get { return "http://dreamlo.com/lb/" + leaderboardPrivateCode; } }
-		private string GetLeaderboardDataUrl { get { return "http://dreamlo.com/lb/" + leaderboardPublicCode; } }
+		private string SetLeaderboardDataUrl { get { return "https://dreamlo.com/lb/" + leaderboardPrivateCode; } }
+		private string GetLeaderboardDataUrl { get { return "https://dreamlo.com/lb/" + leaderboardPublicCode; } }
 
 
 		/// <summary>
@@ -195,8 +195,10 @@ namespace ClawbearGames
 						string[] chars = rows[i].Split(new char[] { '|' }, StringSplitOptions.None);
 						LeaderboardParams leaderboardData = new LeaderboardParams();
 						leaderboardData.SetUsername(chars[0]);
+						Debug.Log("Ошибка ТУт?");
 						leaderboardData.SetLevel(int.Parse(chars[1]));
-						playerLeaderboardDatas[i] = leaderboardData;
+                        Debug.Log("Ошибка ИЛИ ТУт?");
+                        playerLeaderboardDatas[i] = leaderboardData;
 					}
 					IComparer<LeaderboardParams> comparer = new LeaderboardComparer();
 					Array.Sort(playerLeaderboardDatas, comparer);
