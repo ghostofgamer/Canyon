@@ -160,6 +160,8 @@ namespace ClawbearGames
                 yield return null;
             }
 
+           
+
             t = 0;
             rotateTime = 0.25f;
             startQuaternion = bridgeHead.transform.rotation;
@@ -171,6 +173,11 @@ namespace ClawbearGames
                 bridgeHead.transform.rotation = Quaternion.Slerp(startQuaternion, endQuaternion, factor);
                 yield return null;
             }
+
+            Vector3 finalPosition = bridgeHead.transform.position;
+            finalPosition.y += 0.03f; 
+            bridgeHead.transform.position = finalPosition;
+
 
             if (IngameManager.Instance.IngameState != IngameState.Ingame_Playing)
                 yield break;
@@ -285,6 +292,8 @@ namespace ClawbearGames
                 }
                 yield return null;
             }
+
+    
         }
     }
 }

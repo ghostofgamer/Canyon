@@ -7,7 +7,7 @@ namespace ClawbearGames
 
         private void Update()
         {
-            transform.eulerAngles += Vector3.down * 10f * Time.deltaTime;
+            //transform.eulerAngles += Vector3.down * 10f * Time.deltaTime;
         }
     }
 }
