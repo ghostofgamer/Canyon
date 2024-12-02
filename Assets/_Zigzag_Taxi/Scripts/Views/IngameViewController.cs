@@ -6,6 +6,8 @@ namespace ClawbearGames
 {
     public class IngameViewController : BaseViewController
     {
+        private int index =0 ;
+        
         [SerializeField] private RectTransform lelfPanelTrans = null;
         [SerializeField] private RectTransform tutorialPanelTrans = null;
         [SerializeField] private Image timeCountSlider = null;
@@ -15,17 +17,39 @@ namespace ClawbearGames
         [SerializeField] private CanvasGroup _gamePlayGroupe;
             
         private bool isTouchingBuildButton = false;
-
-
+        private float lastBuildTime = 0f;
+        private float buildInterval = 0.03f;
+        private int maxBuilds = 160;
         private void Update()
         {
+            /*if (isTouchingBuildButton)
+            {
+                if (Time.time - lastBuildTime >= buildInterval && index < maxBuilds)
+                {
+                    index++;
+                    Debug.Log("Create True " + index);
+                    IngameManager.Instance.CurrentPlatform.BuildBridge();
+                    lastBuildTime = Time.time;
+                }
+            }*/
+            
+            
             if (isTouchingBuildButton)
             {
+                /*index++;
+                Debug.Log("Create True " + index);
+                if (index >= 160)
+                    return;*/
+                
                 IngameManager.Instance.CurrentPlatform.BuildBridge();
             }
         }
+        
 
-
+        public void ClearIndex()
+        {
+            index = 0;
+        }
         /// <summary>
         ////////////////////////////////////////////////// Public Functions
         /// </summary>
@@ -105,7 +129,10 @@ namespace ClawbearGames
                 if (!IngameManager.Instance.CurrentPlatform.IsCreatedBridge)
                 {
                     IngameManager.Instance.CurrentPlatform.CreateBridge();
+                    
+                   
                 }
+
                 isTouchingBuildButton = true;
             }
         }
@@ -114,6 +141,7 @@ namespace ClawbearGames
         public void OnPointerUpBuildBridgeButton()
         {
             isTouchingBuildButton = false;
+            Debug.Log("False On Pointer Up");
         }
 
 
@@ -123,6 +151,7 @@ namespace ClawbearGames
             {
                 IngameManager.Instance.CurrentPlatform.PlaceBridge();
                 isTouchingBuildButton = false;
+                index = 0;
             }
         }
     }

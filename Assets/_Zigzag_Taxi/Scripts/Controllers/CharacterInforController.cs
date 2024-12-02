@@ -65,7 +65,7 @@ namespace ClawbearGames
 
 
             //Set the material's colors for this character
-            meshRenderer.material.color = (IsUnlocked) ? unlockedColor : lockedColor;
+            //meshRenderer.material.color = (IsUnlocked) ? unlockedColor : lockedColor;
         }
 
 

@@ -12,7 +12,7 @@ namespace ClawbearGames
         [SerializeField] private PlatformSize platformSize = PlatformSize.HUGE;
         [SerializeField] private CenterController centerController = null;
         [SerializeField] private MeshRenderer meshRenderer = null;
-
+        private int index;
         public CenterController CenterController => centerController;
         public PlatformType PlatformType => platformType;
         public PlatformSize PlatformSize => platformSize;
@@ -115,6 +115,9 @@ namespace ClawbearGames
         /// </summary>
         public void BuildBridge()
         {
+            if (listBridgeBody.Count >= 51)
+                return;
+            
             timeCount += Time.deltaTime;
             if (timeCount > 1 / (float)IngameManager.Instance.BridgeBuildingSpeed)
             {
@@ -128,6 +131,9 @@ namespace ClawbearGames
                 listBridgeBody.Add(bridgeBody);
                 bridgeHead.UpdateLength(listBridgeBody.Count);
             }
+            
+            index++;
+            // Debug.Log("Create True " + index);
         }
 
 
@@ -175,7 +181,7 @@ namespace ClawbearGames
             }
 
             Vector3 finalPosition = bridgeHead.transform.position;
-            finalPosition.y += 0.03f; 
+            finalPosition.y += 0.01f; 
             bridgeHead.transform.position = finalPosition;
 
 
@@ -236,6 +242,13 @@ namespace ClawbearGames
                         }
                         listItemIndex.Add(itemIndex);
 
+                        
+                        
+                        
+                        
+                        
+                        
+                        
 
                         ItemController itemController = PoolManager.Instance.GetItemController(ItemType.COIN);
                         itemController.transform.position = listBridgeBody[itemIndex].CenterPosition;
